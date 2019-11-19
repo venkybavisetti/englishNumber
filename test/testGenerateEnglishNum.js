@@ -32,7 +32,8 @@ describe('seperatePlaceValues',function() {
 
 describe ('getEngNum',function() {
   it('should return correct meaningfull valuePlace of number',function() {
-    assert.strictEqual(lib.getEngNum('123'),' one hundred twenty three');
+    assert.strictEqual(lib.getEngNum('123'),'one hundred twenty three');
+    assert.strictEqual(lib.getEngNum('10001'),'ten thousand one');
   });
 });
 

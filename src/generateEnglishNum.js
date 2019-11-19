@@ -15,6 +15,16 @@ const getArray = function(string) {
   return string.split('');
 };
 
+const removeSpacesInWords = function(string) {
+  let spaces = '  ';
+  let space = ' ';
+  let modifyText = string;
+  while(modifyText.includes(spaces)) {
+    modifyText = modifyText.replace(spaces,space);
+  }
+  return modifyText;
+};
+
 const seperatePlaceValues = function(stringNum,index) {
   let words = '';
   if(stringNum.length == 3 && 100*(stringNum[0])) {
@@ -68,8 +78,8 @@ const getPlaceValueOfDigit = function(stringNum) {
     90:'ninety',
     100:'hundred',
     1000:'thousand',
-    100000:'lakhs',
-    10000000:'crore'
+    100000:'lakh',
+    10000000:'crore',
   }
   return engNumWords[stringNum];
 };
@@ -78,7 +88,8 @@ const getEngNum = function(numInString) {
   let numArray = getArray(numInString);
   let pairedArgs = pairArrayFromBack(numArray); 
   let englishWord = pairedArgs.map(seperatePlaceValues).reverse().join(' ');
-  return englishWord;
+  let englishWordsWithNoSpaces = englishWord.trim();
+  return removeSpacesInWords(englishWordsWithNoSpaces);
 };
 
 
