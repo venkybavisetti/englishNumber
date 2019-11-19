@@ -17,19 +17,19 @@ const getArray = function(string) {
 
 const seperatePlaceValues = function(stringNum,index) {
   let words = '';
-  if(stringNum.length == 3) {
+  if(stringNum.length == 3 && 100*(stringNum[0])) {
     words = words + ' ' + getPlaceValueOfDigit((stringNum[0]));
       words = words + ' ' + getPlaceValueOfDigit(100);
     }
   if(+stringNum.slice(-2).join('') < 20) {
-    words = words + ' ' + getPlaceValueOfDigit(stringNum.slice(-2).join(''));
+    words = words + ' ' + getPlaceValueOfDigit(+stringNum.slice(-2).join(''));
   }
   else{
     let reversedArray = stringNum.reverse();
     words = words + ' ' + getPlaceValueOfDigit(10*(+stringNum[1]));
-    words = words + ' ' + getPlaceValueOfDigit(stringNum[0]);
+    words = words + ' ' + getPlaceValueOfDigit(+stringNum[0]);
   }
-  if(index) {
+  if(index*+stringNum.join('')) {
     words = words + ' ' + getPlaceValueOfDigit(10**((2*index)+1));
   }
   return words;
