@@ -1,5 +1,5 @@
 const cmdLineArgs = process.argv.slice(2);
-const getEngNum = require('./src/generateEnglishNum.js').getEngNum;
+const getErrorMsgOrRequireEngNum = require('./src/generateEnglishNum.js').getErrorMsgOrRequireEngNum;
 
-console.log(getEngNum(cmdLineArgs[0]));
+console.log(getErrorMsgOrRequireEngNum(cmdLineArgs));
 

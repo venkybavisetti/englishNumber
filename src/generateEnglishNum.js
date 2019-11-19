@@ -25,28 +25,27 @@ const removeSpacesInWords = function(string) {
   return modifyText;
 };
 
-const seperatePlaceValues = function(stringNum,index) {
+const getPlaceValuesAndDigitValues = function(stringNum,index) {
   let words = '';
   if(stringNum.length == 3 && 100*(stringNum[0])) {
-    words = words + ' ' + getPlaceValueOfDigit((stringNum[0]));
-      words = words + ' ' + getPlaceValueOfDigit(100);
+    words = words + ' ' + getPlaceValueOfNum((stringNum[0]));
+      words = words + ' ' + getPlaceValueOfNum(100);
     }
   if(+stringNum.slice(-2).join('') < 20) {
-    words = words + ' ' + getPlaceValueOfDigit(+stringNum.slice(-2).join(''));
+    words = words + ' ' + getPlaceValueOfNum(+stringNum.slice(-2).join(''));
   }
   else{
     let reversedArray = stringNum.reverse();
-    words = words + ' ' + getPlaceValueOfDigit(10*(+stringNum[1]));
-    words = words + ' ' + getPlaceValueOfDigit(+stringNum[0]);
+    words = words + ' ' + getPlaceValueOfNum(10*(+stringNum[1]));
+    words = words + ' ' + getPlaceValueOfNum(+stringNum[0]);
   }
   if(index*+stringNum.join('')) {
-    words = words + ' ' + getPlaceValueOfDigit(10**((2*index)+1));
+    words = words + ' ' + getPlaceValueOfNum(10**((2*index)+1));
   }
   return words;
 };
 
-
-const getPlaceValueOfDigit = function(stringNum) {
+const getPlaceValueOfNum = function(num) {
   let engNumWords = {
     0:'',
     1:'one',
@@ -81,20 +80,44 @@ const getPlaceValueOfDigit = function(stringNum) {
     100000:'lakh',
     10000000:'crore',
   }
-  return engNumWords[stringNum];
+  return engNumWords[num];
 };
 
 const getEngNum = function(numInString) {
   let numArray = getArray(numInString);
   let pairedArgs = pairArrayFromBack(numArray); 
-  let englishWord = pairedArgs.map(seperatePlaceValues).reverse().join(' ');
+  let englishWord = pairedArgs.map(getPlaceValuesAndDigitValues).reverse().join(' ');
   let englishWordsWithNoSpaces = englishWord.trim();
   return removeSpacesInWords(englishWordsWithNoSpaces);
 };
 
+const isNumber = function(num) {
+  return Number.isInteger(+num);
+};
+
+const isValidInputs = function(cmdLineArgs) {
+  let numberRange = 0 < +cmdLineArgs[0] &&  1000000000 > +cmdLineArgs[0];
+  return (cmdLineArgs.length == 1 && isNumber(cmdLineArgs[0]) &&  numberRange)
+};
+
+const helpForInvalidArgs = function() {
+  return 'Please enter \n natural numbers between above zero to below 100crores'
+};
+
+const getErrorMsgOrRequireEngNum = function(cmdLineArgs) {
+  if(!isValidInputs(cmdLineArgs)){
+    return helpForInvalidArgs();
+  }
+  return getEngNum(cmdLineArgs[0]);
+};
 
 exports.getEngNum = getEngNum;
-exports.getPlaceValueOfDigit = getPlaceValueOfDigit;
-exports.seperatePlaceValues = seperatePlaceValues;
+exports.getPlaceValueOfNum = getPlaceValueOfNum;
+exports.getPlaceValuesAndDigitValues = getPlaceValuesAndDigitValues;
 exports.getArray = getArray;
 exports.pairArrayFromBack = pairArrayFromBack;
+exports.removeSpacesInWords = removeSpacesInWords;
+exports.getErrorMsgOrRequireEngNum = getErrorMsgOrRequireEngNum;
+exports.isNumber = isNumber;
+exports.isValidInputs = isValidInputs;
+exports.helpForInvalidArgs = helpForInvalidArgs;
