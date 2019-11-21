@@ -1,0 +1,16 @@
+{
+  "name": "englishnumbers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "printEnglishNumbers.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prettify": "prettier --write printEnglishNumbers.js",
+    "start": "node printEnglishNumbers.js 233",
+    "test": "mocha"
+  },
+  "author": "bavisetti venkatesh",
+  "license": "ISC"
+}

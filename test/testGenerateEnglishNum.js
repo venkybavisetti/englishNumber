@@ -24,15 +24,15 @@ describe('getArray',function() {
 
 describe('getPlaceValuesAndDigitValues',function() {
   it('should return english words for the given numbers in array',function() {
-    assert.strictEqual(lib.getPlaceValuesAndDigitValues(['1','2','3'],0),' one hundred twenty three');
-    assert.strictEqual(lib.getPlaceValuesAndDigitValues(['1','1','3'],0),' one hundred thirteen');
+    assert.strictEqual(lib.getPlaceValuesAndDigitValues(['1','2','3'],0),' one hundred and twenty three');
+    assert.strictEqual(lib.getPlaceValuesAndDigitValues(['1','1','3'],0),' one hundred and thirteen');
     assert.strictEqual(lib.getPlaceValuesAndDigitValues(['1','3'],1),' thirteen thousand');
   });
 });
 
 describe ('getEngNum',function() {
   it('should return correct meaningfull valuePlace of number',function() {
-    assert.strictEqual(lib.getEngNum('123'),'one hundred twenty three');
+    assert.strictEqual(lib.getEngNum('123'),'one hundred and twenty three');
     assert.strictEqual(lib.getEngNum('10001'),'ten thousand one');
   });
 });

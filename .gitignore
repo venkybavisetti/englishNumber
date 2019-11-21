@@ -1,2 +1,4 @@
-.printEnglishNumbers.js.swp
 .gitignore
+.nyc_output
+node_modules/
+coverage/
